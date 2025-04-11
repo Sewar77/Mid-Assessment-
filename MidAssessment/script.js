@@ -92,11 +92,11 @@ userForm.addEventListener("submit", function (event) {
     const addresscard = document.createElement("p");
     col.appendChild(addresscard);
     addresscard.setAttribute("class", "card-text");
-    addresscard.textContent ="Address: " + userCardData.address;
+    addresscard.textContent = "Address: " + userCardData.address;
 
     const gendercard = document.createElement("p");
     col.appendChild(gendercard);
     gendercard.setAttribute("class", "card-text");
-    gendercard.textContent ="Gender: " + userCardData.gender;
+    gendercard.textContent = "Gender: " + userCardData.gender;
   });
 });
