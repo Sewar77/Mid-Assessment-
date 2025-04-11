@@ -1,53 +1,62 @@
-.bg-custom {
-  background-color: #f4f4f9;
-}
-
-.btn-custom {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn-custom:hover {
-  background-color: #0056b3;
-}
-
-.nav-pills-custom .nav-link {
-  background-color: #e7e7e7;
-  color: #000;
-}
-
-.nav-pills-custom .nav-link.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.nav-pills-custom .nav-link:hover {
-  background-color: #0056b3;
-  color: white;
+body {
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .card-custom {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
 }
 
-.card-custom:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.btn-custom {
+  background-color: #6c5ce7;
+  color: #fff;
+  transition: 0.3s;
 }
 
-.form-control {
-  border-radius: 8px;
+.btn-custom:hover {
+  background-color: #5a4cd2;
 }
 
-.m-3-custom {
-  margin: 1rem;
+.nav-pills .nav-link {
+  border-radius: 50px;
+  color: #6c757d;
 }
 
-.p-3-custom {
-  padding: 1rem;
+.nav-pills .nav-link.active {
+  background-color: #6c5ce7;
 }
 
-.text-center-custom {
-  text-align: center;
+.form-control,
+.form-check-input,
+textarea {
+  border-radius: 0.5rem;
+}
+
+label.form-label {
+  font-weight: 500;
+}
+
+.form-floating label {
+  color: #6c757d;
+}
+
+.table thead {
+  background-color: #f1f1f1;
+}
+
+.table th {
+  color: #333;
+}
+
+.collapse-btns .btn {
+  width: 180px;
+}
+
+@media (max-width: 768px) {
+  .collapse-btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
