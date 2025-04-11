@@ -1,0 +1,53 @@
+.bg-custom {
+  background-color: #f4f4f9;
+}
+
+.btn-custom {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color: #0056b3;
+}
+
+.nav-pills-custom .nav-link {
+  background-color: #e7e7e7;
+  color: #000;
+}
+
+.nav-pills-custom .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.nav-pills-custom .nav-link:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.card-custom {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+.m-3-custom {
+  margin: 1rem;
+}
+
+.p-3-custom {
+  padding: 1rem;
+}
+
+.text-center-custom {
+  text-align: center;
+}
