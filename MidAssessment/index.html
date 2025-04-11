@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Form</title>
+     <link rel="stylesheet" href="style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      class="d-flex justify-content-center align-items-center m-4 p-4 container mx-auto"
+    >
+      <div class="p-3 bg-custom rounded shadow container-fluid">
+        <ul
+          class="nav nav-pills nav-pills-custom mb-3 p-3 m-3"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active fs-1 m-3 p-3"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="true"
+            >
+              User
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link fs-1 m-3 p-3"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="false"
+            >
+              Preview
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="pills-home"
+            role="tabpanel"
+            aria-labelledby="pills-home-tab"
+            tabindex="0"
+          >
+            <form id="userForm">
+              <div class="mb-3 p-3 m-3">
+                <label for="name" class="form-label fs-3">Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  pattern="[a-zA-Z\s]+"
+                  oninvalid="this.setCustomValidity('Please enter letters only')"
+                  oninput="this.setCustomValidity('')"
+                  required
+                />
+              </div>
+
+              <div class="mb-3 p-3 m-3">
+                <label for="email" class="form-label fs-3">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  size="30"
+                  required
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" class="form-text">
+                  We'll never share your email with anyone else.
+                </div>
+              </div>
+
+              <div class="mb-3 p-3 m-3">
+                <label for="phone" class="form-label fs-3">Phone Number:</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  minlength="10"
+                  pattern="\d{10}"
+                  required
+                />
+              </div>
+
+              <div class="mb-3 p-3 m-3">
+                <label class="form-label fs-3">Gender:</label>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="female"
+                    value="Female"
+                    required
+                  />
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="male"
+                    value="Male"
+                  />
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+              </div>
+
+              <div class="form-floating m-3 p-3">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="address"
+                  required
+                ></textarea>
+                <label class="m-3 p-3 mb-3 text-dark" for="address"
+                  >Address</label
+                >
+              </div>
+
+              <button type="submit" class="btn btn-primary m-3 p-3 fs-3">
+                Submit
+              </button>
+            </form>
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="pills-profile"
+            role="tabpanel"
+            aria-labelledby="pills-profile-tab"
+            tabindex="0"
+          >
+            <div>
+              <p class="d-flex justify-content-evenly fs-3">
+                <a
+                  class="btn btn-primary"
+                  data-bs-toggle="collapse"
+                  href="#multiCollapseExample1"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="multiCollapseExample1"
+                >
+                  Display Table
+                </a>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multiCollapseExample2"
+                  aria-expanded="false"
+                  aria-controls="multiCollapseExample2"
+                >
+                  Display Cards
+                </button>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="collapse multi-collapse"
+                    id="multiCollapseExample1"
+                  >
+                    <div class="card card-body card-custom">
+                      <table
+                        class="table table-striped mx-100 text-center"
+                        id="tableUser"
+                      >
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Gender</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="collapse multi-collapse"
+                    id="multiCollapseExample2"
+                  >
+                    <div id="cardsUser" class="mt-4 p-3 m-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
