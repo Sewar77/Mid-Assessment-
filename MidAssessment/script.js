@@ -1,13 +1,14 @@
+
 const users = [];
 const userForm = document.getElementById("userForm");
 
 userForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
   const gender = document.querySelector('input[name="gender"]:checked').value;
-  const address = document.getElementById("address").value;
+  const address = document.getElementById("address").value.trim();
 
   const user = {
     name: name,
@@ -19,8 +20,22 @@ userForm.addEventListener("submit", function (event) {
 
   users.push(user);
   userForm.reset();
-  alert("User added successfully!");
+  //alert("Form Submitted Successfully!");
+  document.getElementById("successMessage").classList.remove("d-none");
 
+  const successMsg = document.getElementById("successMessage");
+
+  // Scroll to it smoothly
+  successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+  
+  successMsg.focus();
+  
+
+
+
+
+
+  
   const table = document
     .getElementById("tableUser")
     .getElementsByTagName("tbody")[0];
@@ -78,6 +93,7 @@ userForm.addEventListener("submit", function (event) {
     col.appendChild(cardName);
     cardName.setAttribute("class", "card-title namecard");
     cardName.textContent = "Name: " + userCardData.name;
+    
 
     const emailcard = document.createElement("p");
     col.appendChild(emailcard);
