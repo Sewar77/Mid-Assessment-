@@ -50,7 +50,14 @@
             id="pills-home"
             role="tabpanel"
           >
-            <form id="userForm">
+            <div
+              id="successMessage"
+              class="alert alert-success d-none"
+              role="alert"
+            >
+              Form submitted successfully! 🎉
+            </div>
+            <form id="userForm" novalidate>
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input
@@ -59,9 +66,10 @@
                   id="name"
                   pattern="[a-zA-Z\s]+"
                   required
-                  oninvalid="this.setCustomValidity('Please enter letters only')"
-                  oninput="this.setCustomValidity('')"
                 />
+                <div class="invalid-feedback">
+                  Please enter letters only (no numbers or symbols).
+                </div>
               </div>
 
               <div class="mb-3">
@@ -76,6 +84,9 @@
                 <div id="emailHelp" class="form-text">
                   We'll never share your email with anyone else.
                 </div>
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
               </div>
 
               <div class="mb-3">
@@ -88,10 +99,13 @@
                   pattern="\d{10}"
                   required
                 />
+                <div class="invalid-feedback">
+                  Please enter a valid 10-digit phone number.
+                </div>
               </div>
 
-              <div class="mb-3">
-                <label class="form-label">Gender</label>
+              <fieldset class="mb-3">
+                <legend class="form-label">Gender</legend>
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -100,6 +114,7 @@
                     id="female"
                     value="Female"
                     required
+                    aria-label="Female Gender"
                   />
                   <label class="form-check-label" for="female">Female</label>
                 </div>
@@ -110,22 +125,22 @@
                     name="gender"
                     id="male"
                     value="Male"
+                    aria-label="Male Gender"
                   />
                   <label class="form-check-label" for="male">Male</label>
                 </div>
-              </div>
+                <div class="invalid-feedback">Please select a gender.</div>
+              </fieldset>
 
               <div class="form-floating mb-4">
-                <textarea
-                  class="form-control"
-                  id="address"
-                  placeholder="Leave a comment here"
-                  required
-                ></textarea>
+                <textarea class="form-control" id="address" required></textarea>
                 <label for="address">Address</label>
+                <div class="invalid-feedback">Address is required.</div>
               </div>
 
-              <button type="submit" class="btn btn-custom btn-primary fs-5">Submit</button>
+              <button type="submit" class="btn btn-custom btn-primary fs-5">
+                Submit
+              </button>
             </form>
           </div>
 
@@ -182,7 +197,7 @@
 
               <div class="col-md-6">
                 <div class="collapse multi-collapse" id="multiCollapseExample2">
-                  <div id="cardsUser" class="mt-4"></div>
+                  <div id="cardsUser" class="mt-4 m-3 p-3"></div>
                 </div>
               </div>
             </div>
@@ -190,7 +205,6 @@
         </div>
       </div>
     </div>
-
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   </body>
