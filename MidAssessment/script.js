@@ -1,118 +1,121 @@
+class User {
+  constructor(name, email, phone, gender, address) {
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.gender = gender;
+    this.address = address;
+  }
+}
 
-const users = [];
-const userForm = document.getElementById("userForm");
+class UserUI {
+  constructor() {
+    this.users = [];
+    this.userForm = document.getElementById("userForm");
+    this.successMsg = document.getElementById("successMessage");
+    this.tableBody = document.getElementById("tableUser").getElementsByTagName("tbody")[0];
+    this.cardContainer = document.getElementById("cardsUser");
 
-userForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const gender = document.querySelector('input[name="gender"]:checked').value;
-  const address = document.getElementById("address").value.trim();
+    this.bindEvents();
+  }
 
-  const user = {
-    name: name,
-    email: email,
-    gender: gender,
-    phone: phone,
-    address: address,
-  };
+  bindEvents() {
+    this.userForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this.handleSubmit();
+    });
+  }
 
-  users.push(user);
-  userForm.reset();
-  //alert("Form Submitted Successfully!");
-  document.getElementById("successMessage").classList.remove("d-none");
+  handleSubmit() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const address = document.getElementById("address").value.trim();
 
-  const successMsg = document.getElementById("successMessage");
+    const newUser = new User(name, email, phone, gender, address);
+    this.users.push(newUser);
 
-  // Scroll to it smoothly
-  successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
-  
-  successMsg.focus();
-  
+    this.userForm.reset();
+    this.showSuccessMessage();
+    this.renderTable();
+    this.renderCards();
+  }
 
+  showSuccessMessage() {
+    this.successMsg.classList.remove("d-none");
+    this.successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+    this.successMsg.focus();
+  }
 
+  renderTable() {
+    this.tableBody.innerHTML = "";
+    this.users.forEach((user, index) => {
+      const row = document.createElement("tr");
 
+      const counterTd = document.createElement("td");
+      counterTd.textContent = index + 1;
 
+      const nameTd = document.createElement("td");
+      nameTd.textContent = user.name;
 
-  
-  const table = document
-    .getElementById("tableUser")
-    .getElementsByTagName("tbody")[0];
-  table.innerHTML = "";
-  let counter = 0;
+      const emailTd = document.createElement("td");
+      emailTd.textContent = user.email;
 
-  users.forEach((element) => {
-    const row = document.createElement("tr");
-    counter++;
+      const phoneTd = document.createElement("td");
+      phoneTd.textContent = user.phone;
 
-    const nameUser = document.createElement("td");
-    nameUser.textContent = element.name;
+      const addressTd = document.createElement("td");
+      addressTd.textContent = user.address;
 
-    const emailUser = document.createElement("td");
-    emailUser.textContent = element.email;
+      const genderTd = document.createElement("td");
+      genderTd.textContent = user.gender;
 
-    const phoneUser = document.createElement("td");
-    phoneUser.textContent = element.phone;
+      row.append(counterTd, nameTd, emailTd, addressTd, phoneTd, genderTd);
+      this.tableBody.appendChild(row);
+    });
+  }
 
-    const addressUser = document.createElement("td");
-    addressUser.textContent = element.address;
+  renderCards() {
+    this.cardContainer.innerHTML = "";
+    this.users.forEach((user) => {
+      const cardBody = document.createElement("div");
+      cardBody.className = "card card-body";
 
-    const genderUser = document.createElement("td");
-    genderUser.textContent = element.gender;
+      const rowCard = document.createElement("div");
+      rowCard.className = "row";
 
-    const counterTd = document.createElement("td");
-    counterTd.textContent = counter;
+      const col = document.createElement("div");
+      col.className = "col";
 
-    row.appendChild(counterTd);
-    row.appendChild(nameUser);
-    row.appendChild(emailUser);
-    row.appendChild(addressUser);
-    row.appendChild(phoneUser);
-    row.appendChild(genderUser);
+      const cardName = document.createElement("h5");
+      cardName.className = "card-title namecard";
+      cardName.textContent = `Name: ${user.name}`;
 
-    table.appendChild(row);
-  });
+      const emailCard = document.createElement("p");
+      emailCard.className = "card-text";
+      emailCard.textContent = `Email: ${user.email}`;
 
-  const card = document.getElementById("cardsUser");
-  card.innerHTML = "";
-  users.forEach((userCardData) => {
-    const cardBody = document.createElement("div");
-    card.appendChild(cardBody);
-    cardBody.setAttribute("class", "card card-body");
+      const phoneCard = document.createElement("p");
+      phoneCard.className = "card-text";
+      phoneCard.textContent = `PhoneNumber: ${user.phone}`;
 
-    const rowCard = document.createElement("div");
-    cardBody.appendChild(rowCard);
-    rowCard.setAttribute("class", "row");
+      const addressCard = document.createElement("p");
+      addressCard.className = "card-text";
+      addressCard.textContent = `Address: ${user.address}`;
 
-    const col = document.createElement("div");
-    col.setAttribute("class", "col");
-    rowCard.appendChild(col);
+      const genderCard = document.createElement("p");
+      genderCard.className = "card-text";
+      genderCard.textContent = `Gender: ${user.gender}`;
 
-    const cardName = document.createElement("h5");
-    col.appendChild(cardName);
-    cardName.setAttribute("class", "card-title namecard");
-    cardName.textContent = "Name: " + userCardData.name;
-    
+      col.append(cardName, emailCard, phoneCard, addressCard, genderCard);
+      rowCard.appendChild(col);
+      cardBody.appendChild(rowCard);
+      this.cardContainer.appendChild(cardBody);
+    });
+  }
+}
 
-    const emailcard = document.createElement("p");
-    col.appendChild(emailcard);
-    emailcard.setAttribute("class", "card-text");
-    emailcard.textContent = "Email: " + userCardData.email;
-
-    const phonecard = document.createElement("p");
-    col.appendChild(phonecard);
-    phonecard.setAttribute("class", "card-text");
-    phonecard.textContent = "PhoneNumber: " + userCardData.phone;
-
-    const addresscard = document.createElement("p");
-    col.appendChild(addresscard);
-    addresscard.setAttribute("class", "card-text");
-    addresscard.textContent = "Address: " + userCardData.address;
-
-    const gendercard = document.createElement("p");
-    col.appendChild(gendercard);
-    gendercard.setAttribute("class", "card-text");
-    gendercard.textContent = "Gender: " + userCardData.gender;
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  new UserUI();
 });
